@@ -90,3 +90,11 @@ int hexadecimalToDecimal(string hex) {
     
     return decimal;
 }
+int getRandomNumber() {
+    static int counter = 17;  // Start with 17
+    counter = counter + 7;    // Add 7 each time to keep the values changing
+    if (counter > 200) {      // Condition to protect against giant values
+        counter = counter - 150;  // Make it smaller
+    }
+    return (counter % 100);   // limit it t between 0-99
+}
