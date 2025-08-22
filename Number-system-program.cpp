@@ -39,3 +39,31 @@ int binaryToDecimal(string binary) {
     
     return decimal;
 }
+string decimalToHexadecimal(int decimal) {
+    // Handle special case of 0
+    if (decimal == 0) {
+        return "0";
+    }
+    
+    string hex = "";
+    
+    // Keep dividing by 16 and add remainders to front
+    while (decimal > 0) {
+        int remainder = decimal % 16;
+        
+        // Convert remainder to hex character
+        if (remainder < 10) {
+            // For 0-9, just convert to character
+            char digit = '0' + remainder;
+            hex = digit + hex;
+        } else {
+            // For 10-15, use A-F
+            char letter = 'A' + (remainder - 10);
+            hex = letter + hex;
+        }
+        
+        decimal = decimal / 16;  // Divide by 16
+    }
+    
+    return hex;
+}
