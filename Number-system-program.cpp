@@ -25,3 +25,17 @@ string decimalToBinary(int decimal) {
     
     return binary;
 }
+int binaryToDecimal(string binary) {
+    int decimal = 0;
+    int multiplier = 1;  // Start with 1 (which is 2^0)
+    
+    // Go from right to left in the binary string
+    for (int i = binary.length() - 1; i >= 0; i--) {
+        if (binary[i] == '1') {
+            decimal = decimal + multiplier;
+        }
+        multiplier = multiplier * 2;  // Next power of 2
+    }
+    
+    return decimal;
+}
