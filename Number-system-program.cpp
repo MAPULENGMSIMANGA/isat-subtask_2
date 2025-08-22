@@ -67,3 +67,26 @@ string decimalToHexadecimal(int decimal) {
     
     return hex;
 }
+int hexadecimalToDecimal(string hex) {
+    int decimal = 0;
+    int multiplier = 1;  // Start with 1 (which is 16^0)
+    
+    // Go from right to left through the hex string
+    for (int i = hex.length() - 1; i >= 0; i--) {
+        int digitValue; //indicate data type
+        
+        // Convert hex character to number value
+        if (hex[i] >= '0' && hex[i] <= '9') {
+            digitValue = hex[i] - '0';  // For digits 0-9
+        } else if (hex[i] >= 'A' && hex[i] <= 'F') {
+            digitValue = (hex[i] - 'A') + 10;  // For A=10, B=11, etc.
+        } else if (hex[i] >= 'a' && hex[i] <= 'f') {
+            digitValue = (hex[i] - 'a') + 10;  // For lowercase a=10, b=11, etc.
+        }
+        
+        decimal = decimal + (digitValue * multiplier);
+        multiplier = multiplier * 16;  // Next power of 16
+    }
+    
+    return decimal;
+}
